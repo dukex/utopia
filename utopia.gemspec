@@ -7,11 +7,13 @@ require "utopia/version"
 Gem::Specification.new do |s|
   s.name        = "utopia"
   s.version     = Utopia::VERSION
-  s.authors     = ["TODO: Your name"]
-  s.email       = ["TODO: Your email"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of Utopia."
-  s.description = "TODO: Description of Utopia."
+  s.date        = Time.now.strftime('%Y-%m-%d')
+  s.authors     = ["Duke"]
+  s.email       = ["duke@vertigem.xxx"]
+  s.homepage    = "http://vertigem.xxx"
+  s.summary     = "Gem to open data."
+  s.description = "Gem to open data."
+  s.has_rdoc          = false
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
 
