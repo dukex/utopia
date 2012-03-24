@@ -1,4 +1,6 @@
 Dummy::Application.routes.draw do
+  Utopia.routes(self)
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

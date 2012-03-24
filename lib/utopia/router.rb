@@ -5,8 +5,8 @@ module Utopia
     end
 
     def apply(router)
-      router.instance_exec(@application.resources) do |esources|
-        esources.each do |k, config|
+      router.instance_exec(@application.resources) do |resources|
+        resources.each do |k, config|
           route_definition_block = Proc.new do
             resources config.resource_name.route_key
           end
