@@ -11,7 +11,7 @@ module Utopia
     attr_reader :collection_actions
     # An array of member actions defined for this resource
     attr_reader :member_actions
-    
+
     def initialize(resource_name, options = {})
         #@namespace = namespace
         @resource_class_name = "#{resource_name.to_s.classify}"
