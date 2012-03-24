@@ -4,9 +4,26 @@ require File.expand_path("../../spec/dummy/config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
 
+module UtopiaIntegrationSpecHelper
+  def load_defaults!
+    Utopia.load!
+  end
+  def load_resources
+    yield
+    reload_routes!
+  end
+  def reload_routes!
+    Rails.application.reload_routes!
+  end
+end
+
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
+
+include UtopiaIntegrationSpecHelper
+load_defaults!
+reload_routes!
 
 RSpec.configure do |config|
   # ## Mock Framework
