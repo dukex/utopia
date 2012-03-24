@@ -18,10 +18,11 @@ module Utopia
         @options = options
         #@sort_order = @options[:sort_order]
         @member_actions, @collection_actions = [], []
-        create_model
+        register_resource_model
+        register_resource_controller
       end
 
-          # The class this resource wraps. If you register the Post model, Resource#resource_class
+    # The class this resource wraps. If you register the Post model, Resource#resource_class
     # will point to the Post class
     def resource_class
       ActiveSupport::Dependencies.constantize(resource_class_name)
@@ -29,8 +30,13 @@ module Utopia
 
     private
 
-    def create_model
+    def register_resource_model
       eval "class ::#{resource_class_name} < ActiveRecord::Base; end"
+    end
+
+    def register_resource_controller
+      eval "class ::#{controller_name} < Utopia::ResourceController; end"
+      controller.utopia_config = self
     end
   end
 end

@@ -1,8 +1,10 @@
 require "utopia/engine"
 
 module Utopia
-  autoload :Application, 'utopia/application'
-  autoload :Resource, 'utopia/resource'
+  autoload :Application,          'utopia/application'
+  autoload :BaseController,       'utopia/base_controller'
+  autoload :Resource,             'utopia/resource'
+  autoload :ResourceController,   'utopia/resource_controller'
 
   class << self
 

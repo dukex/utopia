@@ -7,7 +7,9 @@ require 'rspec/autorun'
 module UtopiaIntegrationSpecHelper
   def load_defaults!
     Utopia.load!
+    Utopia.register(:lei)
   end
+
   def load_resources
     yield
     reload_routes!
