@@ -16,7 +16,6 @@ module Utopia
         #@namespace = namespace
         @resource_class_name = "#{resource_name.to_s.classify}"
         @options = options
-        puts @options if @options.nil?
         #@sort_order = @options[:sort_order]
         @member_actions, @collection_actions = [], []
         create_model
