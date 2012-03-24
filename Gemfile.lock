@@ -113,6 +113,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  inherited_resources
   jquery-rails
   rspec-rails
   sqlite3
