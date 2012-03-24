@@ -8,7 +8,7 @@ module Utopia
       router.instance_exec(@application.resources) do |resources|
         resources.each do |k, config|
           route_definition_block = Proc.new do
-            resources config.resource_name.route_key
+            resources config.resource_name.route_key, :only => [:index, :show]
           end
           instance_eval &route_definition_block
         end
