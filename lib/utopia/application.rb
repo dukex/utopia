@@ -21,6 +21,7 @@ module Utopia
     end
 
     def routes(rails_router)
+      load!
       router.apply(rails_router)
     end
 
