@@ -14,9 +14,12 @@ module Utopia
     attr_reader :collection_actions
     # An array of member actions defined for this resource
     attr_reader :member_actions
+    # The configuration to resource
+    attr_accessor :config
 
     def initialize(resource_name, options = {}, &block)
-      #- parse_registration_block(self, &block) if block_given?
+      @config ||= {}
+      parse_registration_block(self, &block) if block_given?
       @resource_class_name = "#{resource_name.to_s.classify}"
       @options = options
       @member_actions, @collection_actions = [], []
@@ -48,12 +51,12 @@ module Utopia
       controller.utopia_config = self
     end
 
-    #- def resource_dsl
-    #-   @resource_dsl ||= ResourceDSL.new
-    #- end
+    def resource_dsl
+      @resource_dsl ||= ResourceDSL.new
+    end
 
-    #- def parse_registration_block(config, &block)
-    #-   resource_dsl.run_registration_block(config, &block)
-    #- end
+    def parse_registration_block(config, &block)
+      resource_dsl.run_registration_block(config, &block)
+    end
   end
 end
