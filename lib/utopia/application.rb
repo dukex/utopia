@@ -26,7 +26,7 @@ module Utopia
     # After, you can enter on */leis.json* for example and see your resource expose
     #
     def register(resource_name, options = {}, &block)
-      resource = find_or_create_resource(resource_name)
+      resource = find_or_create_resource(resource_name, options, &block)
     end
 
     def router # :nodoc:
@@ -38,9 +38,9 @@ module Utopia
       router.apply(rails_router)
     end
 
-    def find_or_create_resource(name) # :nodoc:
+    def find_or_create_resource(name, options = {}, &block) # :nodoc:
       return @resources[name] if resources[name]
-      resource = Resource.new(name)
+      resource = Resource.new(name, options, &block)
       @resources[name] = resource
     end
 

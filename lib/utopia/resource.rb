@@ -30,23 +30,30 @@ module Utopia
       ActiveSupport::Dependencies.constantize(resource_class_name)
     end
 
-    private
-
-    # Create the resource model
-    def create_resource_model
-      eval "class ::#{resource_class_name} < ActiveRecord::Base; end"
+    def resource_table_name
+      resource_class.quoted_table_name
     end
+
+    protected
 
     # Create the resource controller
     def create_resource_controller
       controller_class = <<-CONTROLLER
-      class ::#{controller_name} < Utopia::ResourceController
-        responders Roar::Rails::Responder
-      end
+        class ::#{controller_name} < Utopia::ResourceController
+          responders Roar::Rails::Responder
+        end
       CONTROLLER
 
       eval controller_class
       controller.utopia_config = self
     end
+
+    #- def resource_dsl
+    #-   @resource_dsl ||= ResourceDSL.new
+    #- end
+
+    #- def parse_registration_block(config, &block)
+    #-   resource_dsl.run_registration_block(config, &block)
+    #- end
   end
 end
