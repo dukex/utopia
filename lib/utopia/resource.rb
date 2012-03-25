@@ -35,7 +35,13 @@ module Utopia
     end
 
     def register_resource_controller
-      eval "class ::#{controller_name} < Utopia::ResourceController; end"
+      controller_class = <<-CONTROLLER
+        class ::#{controller_name} < Utopia::ResourceController
+          responders Roar::Rails::Responder
+        end
+      CONTROLLER
+
+      eval controller_class
       controller.utopia_config = self
     end
   end
