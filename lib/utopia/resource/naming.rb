@@ -20,59 +20,29 @@ module Utopia
         if @options[:as]
           @options[:as]
         else
-           resource_name.human(:default => resource_name.gsub('::', ' ')).titleize
-         end
-      end
+         resource_name.human(:default => resource_name.gsub('::', ' ')).titleize
+       end
+     end
 
-      def plural_resource_label
-        if @options[:as]
-          #@options[:as].pluralize
-        else
-          resource_name.human(:count => 3, :default => resource_label.pluralize).titleize
-        end
+     def plural_resource_label
+      if @options[:as]
+        @options[:as].pluralize
+      else
+        resource_name.human(:count => 3, :default => resource_label.pluralize).titleize
       end
     end
+  end
 
     # A subclass of ActiveModel::Name which supports the different APIs presented
     # in Rails < 3.1 and > 3.1.
     class Name < ActiveModel::Name
 
       def initialize(klass, name = nil)
-        if ActiveModel::Name.instance_method(:initialize).arity == 1
-          #super(proxy_for_initializer(klass, name))
-        else
-          super(klass, nil, name)
-        end
-      end
-
-      def proxy_for_initializer(klass, name)
-        #return klass unless name
-        #return StringClassProxy.new(klass, name) if klass
-
-        #StringProxy.new(name)
+        super(klass, nil, name)
       end
 
       def route_key
         plural
-      end
-
-      class StringProxy
-        def initialize(name)
-          #@name = name
-        end
-
-        def name
-          #@name
-        end
-      end
-
-      class StringClassProxy < StringProxy
-       # delegate :lookup_ancestors, :i18n_scope, :to => :"@klass"
-
-        def initialize(klass, name)
-          #@klass = klass || name
-          #super(name)
-        end
       end
     end
   end

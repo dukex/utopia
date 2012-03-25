@@ -12,17 +12,6 @@ module Utopia
       def controller
         @controller ||= controller_name.constantize
       end
-
-      # Returns a symbol for the route to use to get to the
-      # collection of this resource
-      def route_collection_path
-        #route = [
-        #  controller.resources_configuration[:self][:route_collection_name],
-        #  'path'
-        #]
-
-        #route.compact.join('_').to_sym
-      end
     end
   end
 end
