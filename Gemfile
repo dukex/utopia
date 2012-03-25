@@ -6,6 +6,7 @@ source "http://rubygems.org"
 gemspec
 
 gem "inherited_resources"
+gem "roar-rails"
 
 group :development do
 	gem "rspec-rails"
