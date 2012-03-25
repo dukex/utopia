@@ -13,7 +13,6 @@ Gem::Specification.new do |s|
   s.homepage    = "http://vertigem.xxx"
   s.summary     = "Gem to open data."
   s.description = "Gem to open data."
-  s.has_rdoc          = false
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
 
