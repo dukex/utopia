@@ -9,7 +9,8 @@ gem "inherited_resources"
 gem "roar-rails"
 
 group :development do
-	gem "rspec-rails"
- 	gem "jquery-rails"
- 	gem "horo"
+  gem "rspec-rails"
+  gem "jquery-rails"
+  gem "horo"
+  gem "simplecov"
 end
