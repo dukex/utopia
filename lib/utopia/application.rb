@@ -1,22 +1,19 @@
 require 'utopia/router'
-require 'utopia/helpers/settings'
 
 module Utopia
   # In Utopia 0.0.1, Utopia::Application object is to manipulate the utopia system, here
   # there are the recources, loads, start routes, etc
 	class Application
-    include Settings
-
-    # Load paths for utopia configurations. Add folders to this load path
-    # to load up other resources for utopia.
-    setting :load_paths, [File.expand_path('app/resource', Rails.root)]
 
     # A hash of all the registered resources
-    attr_accessor  :resources
+    attr_accessor  :resources, :load_paths
 
-    # create a default value to resources
+    # create a default value to resources and
+    # Load paths for utopia configurations. Add folders to this load path
+    # to load up other resources for utopia.
     def initialize
       self.resources ||= {}
+      self.load_paths = [File.expand_path('app/resource', Rails.root)]
     end
 
     # === Register a resource
