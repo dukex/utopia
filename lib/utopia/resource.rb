@@ -1,10 +1,12 @@
 require 'utopia/resource/naming'
+require 'utopia/resource/models'
 require 'utopia/resource/controllers'
 
 module Utopia
   class Resource
     include Naming
     include Controllers
+    include Models
 
     # The name of the resource class
     attr_reader :resource_class_name
@@ -13,7 +15,8 @@ module Utopia
     # An array of member actions defined for this resource
     attr_reader :member_actions
 
-    def initialize(resource_name, options = {})
+    def initialize(resource_name, options = {}, &block)
+      #- parse_registration_block(self, &block) if block_given?
       @resource_class_name = "#{resource_name.to_s.classify}"
       @options = options
       @member_actions, @collection_actions = [], []
