@@ -41,6 +41,10 @@ module Utopia
         config.plural_resource_label.should == "Categories"
       end
 
+      it "should return options[:as] the plural version" do
+        Resource.new(:category, :as => "My Category").plural_resource_label.should == "My Categories"
+      end
+
       context "when the :as option is given" do
         it "should return the custom name" do
           Resource.new(:category, :as => "My Category").resource_label.should == "My Category"

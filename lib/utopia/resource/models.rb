@@ -10,7 +10,7 @@ module Utopia
 
       # Create the resource model
       def create_resource_model
-        table_name = @options[:table_name] ? "self.table_name = '#{@options[:table_name]}'" : nil
+        table_name = @config[:table_name] ? "self.table_name = '#{@config[:table_name]}'" : nil
         model_class = <<-MODEL
           class ::#{model_name} < ActiveRecord::Base
             #{table_name}

@@ -5,8 +5,8 @@ module Utopia
     before { load_defaults! }
     let(:application){ Utopia::Application.new }
 
-    def config(options = {})
-      @config ||= Resource.new(:lei, options)
+    def config(options = {}, &block)
+      @config ||= Resource.new(:lei, options, &block)
     end
 
 
@@ -22,7 +22,11 @@ module Utopia
     end
 
     describe "custom config" do
-      let(:custom_config){ config(:table_name => "L123") }
+      let(:custom_config) do
+        config do
+          table_name "L123"
+        end
+      end
 
       it "should set table name to L123" do
         custom_config.model.table_name.should == 'L123'
