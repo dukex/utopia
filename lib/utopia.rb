@@ -9,7 +9,6 @@ module Utopia
   autoload :ResourceDSL,          'utopia/resource_dsl'
 
   class << self
-
     # the utopia application with the methods to application work
     def application
       @application ||= ::Utopia::Application.new
