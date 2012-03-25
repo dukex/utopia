@@ -1,11 +1,5 @@
 require "utopia/engine"
 
-# = Utopia Module
-#
-# This is the base module of the system
-#
-
-
 module Utopia
   autoload :Application,          'utopia/application'
   autoload :BaseController,       'utopia/base_controller'
@@ -14,16 +8,13 @@ module Utopia
 
   class << self
 
-    attr_accessor :application
-
+    # the utopia application with the methods to application work
     def application
       @application ||= ::Utopia::Application.new
     end
 
+    # TODO: documentation
     def setup
-      # application.setup!
-      # yield(application)
-      # application.prepare!
     end
 
     delegate :register,      :to => :application
