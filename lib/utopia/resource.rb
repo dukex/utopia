@@ -1,12 +1,14 @@
 require 'utopia/resource/naming'
 require 'utopia/resource/models'
 require 'utopia/resource/controllers'
+require 'utopia/resource/representer'
 
 module Utopia
   class Resource
     include Naming
     include Controllers
     include Models
+    include Representer
 
     # The name of the resource class
     attr_reader :resource_class_name
@@ -39,6 +41,12 @@ module Utopia
 
     def parse_registration_block(config, &block)
       resource_dsl.run_registration_block(config, &block)
+    end
+
+    def create!
+      create_resource_model
+      create_resource_representer
+      create_resource_controller
     end
   end
 end
