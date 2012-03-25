@@ -8,19 +8,18 @@ module Utopia
 
     # The name of the resource class
     attr_reader :resource_class_name
+    # An array of collection actions defined for this resource
     attr_reader :collection_actions
     # An array of member actions defined for this resource
     attr_reader :member_actions
 
     def initialize(resource_name, options = {})
-        #@namespace = namespace
-        @resource_class_name = "#{resource_name.to_s.classify}"
-        @options = options
-        #@sort_order = @options[:sort_order]
-        @member_actions, @collection_actions = [], []
-        register_resource_model
-        register_resource_controller
-      end
+      @resource_class_name = "#{resource_name.to_s.classify}"
+      @options = options
+      @member_actions, @collection_actions = [], []
+      create_resource_model
+      create_resource_controller
+    end
 
     # The class this resource wraps. If you register the Post model, Resource#resource_class
     # will point to the Post class
@@ -30,15 +29,17 @@ module Utopia
 
     private
 
-    def register_resource_model
+    # Create the resource model
+    def create_resource_model
       eval "class ::#{resource_class_name} < ActiveRecord::Base; end"
     end
 
-    def register_resource_controller
+    # Create the resource controller
+    def create_resource_controller
       controller_class = <<-CONTROLLER
-        class ::#{controller_name} < Utopia::ResourceController
-          responders Roar::Rails::Responder
-        end
+      class ::#{controller_name} < Utopia::ResourceController
+        responders Roar::Rails::Responder
+      end
       CONTROLLER
 
       eval controller_class
