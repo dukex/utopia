@@ -1,5 +1,11 @@
 require "utopia/engine"
 
+# = Utopia Module
+#
+# This is the base module of the system
+#
+
+
 module Utopia
   autoload :Application,          'utopia/application'
   autoload :BaseController,       'utopia/base_controller'

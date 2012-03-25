@@ -1,0 +1,1 @@
+watch( '^lib/(.*)\.rb')  { |m| system(" bundle exec rake rdoc ") }
