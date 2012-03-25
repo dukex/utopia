@@ -6,9 +6,9 @@ ainda então, estaremos caminhando para um pais mais democratico
 
 == Install to Test
 on your workdir
-	rails new aproject_test -T
-	cd aproject_test
-	BUNDLE_GEMFILE=../pathToUtopiaFolder/Gemfile b rails g utopia:install # install utopia
+  rails new aproject_test -T
+  cd aproject_test
+  BUNDLE_GEMFILE=../pathToUtopiaFolder/Gemfile b rails g utopia:install # install utopia
 
 == Configure
 Please check your database config on *database.yml*
@@ -16,11 +16,32 @@ Please check your database config on *database.yml*
 == Create a Resource
 Atention! create a resource *DON'T* touch on database, *you need* create your table before it
 
-The _resource_name_ should be a resource on singular
-	BUNDLE_GEMFILE=../pathToUtopiaFolder/Gemfile b rails g utopia:resource resource_name
+In the example _law_ is my resource, the should be a word in singular
+  BUNDLE_GEMFILE=../pathToUtopiaFolder/Gemfile b rails g utopia:resource law
+
+It will create app/resource/law.rb, like it
+  Utopia.register :site do
+  end
+
+=== Changing default
+==== Database Table Name
+to change the database table name you can pass your database name to table_name config
+  Utopia.register :law do
+    table_name "LAW122"
+  end
+==== Attributes
+to change what attribute you want to expose, you can use attribites config
+  Utopia.register :law do
+    attributes do
+      set :number
+      set :author
+    end
+  end
+
+All other attributes will be protected
 
 == Run Server
-	BUNDLE_GEMFILE=../pathToUtopiaFolder/Gemfile b rails s # run server
+  BUNDLE_GEMFILE=../pathToUtopiaFolder/Gemfile b rails s # run server
 
 == License
 By obtaining, using and/or copying this work, you (the licensee) agree that you have read, understood, and will comply with the following terms and conditions.

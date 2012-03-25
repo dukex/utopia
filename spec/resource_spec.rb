@@ -25,11 +25,18 @@ module Utopia
       let(:custom_config) do
         config do
           table_name "L123"
+          attributes do
+            set :name
+          end
         end
       end
 
       it "should set table name to L123" do
         custom_config.model.table_name.should == 'L123'
+      end
+
+      it "should set columns only with name" do
+        custom_config.columns.should == [:name]
       end
     end
 

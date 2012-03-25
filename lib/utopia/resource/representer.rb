@@ -1,3 +1,6 @@
+require 'roar/representer/json'
+require 'roar/representer/feature/hypermedia'
+
 module Utopia
   class Resource
     module Representer
@@ -6,6 +9,8 @@ module Utopia
           module ::#{model_name}Representer
             include Roar::Representer::JSON
             include Roar::Representer::Feature::Hypermedia
+
+            #{columns.map{|c| "property :#{c}" }.join("\n")}
           end
         MODEL
         eval representer_module

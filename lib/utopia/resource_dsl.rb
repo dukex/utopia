@@ -6,5 +6,9 @@ module Utopia
     def table_name(name)
       config.config[:table_name] = name
     end
+
+    def attributes(&block)
+      config.attributes(&block)
+    end
   end
 end
