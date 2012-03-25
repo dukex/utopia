@@ -10,10 +10,6 @@ module Utopia
 
     # The name of the resource class
     attr_reader :resource_class_name
-    # An array of collection actions defined for this resource
-    attr_reader :collection_actions
-    # An array of member actions defined for this resource
-    attr_reader :member_actions
     # The configuration to resource
     attr_accessor :config
 
@@ -22,9 +18,7 @@ module Utopia
       parse_registration_block(self, &block) if block_given?
       @resource_class_name = "#{resource_name.to_s.classify}"
       @options = options
-      @member_actions, @collection_actions = [], []
-      create_resource_model
-      create_resource_controller
+      create!
     end
 
     # The class this resource wraps. If you register the Post model, Resource#resource_class
@@ -38,18 +32,6 @@ module Utopia
     end
 
     protected
-
-    # Create the resource controller
-    def create_resource_controller
-      controller_class = <<-CONTROLLER
-        class ::#{controller_name} < Utopia::ResourceController
-          responders Roar::Rails::Responder
-        end
-      CONTROLLER
-
-      eval controller_class
-      controller.utopia_config = self
-    end
 
     def resource_dsl
       @resource_dsl ||= ResourceDSL.new

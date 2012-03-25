@@ -12,6 +12,18 @@ module Utopia
       def controller
         @controller ||= controller_name.constantize
       end
+
+      # Create the resource controller
+      def create_resource_controller
+        controller_class = <<-CONTROLLER
+          class ::#{controller_name} < Utopia::ResourceController
+            responders Roar::Rails::Responder
+          end
+        CONTROLLER
+
+        eval controller_class
+        controller.utopia_config = self
+      end
     end
   end
 end
