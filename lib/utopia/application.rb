@@ -8,6 +8,7 @@ module Utopia
     setting :load_paths, [File.expand_path('app/resource', Rails.root)]
 
     attr_accessor  :resources
+
     def initialize
       @resources = {}
     end
@@ -26,12 +27,9 @@ module Utopia
     end
 
     def find_or_create_resource(name)
-      #return resources[name] if resources[name]
+      return @resources[name] if resources[name]
       resource = Resource.new(name)
       @resources[name] = resource
-      #Utopia::Event.dispatch Utopia::Namespace::RegisterEvent, namespace
-      #yield(namespace) if block_given?
-      #namespace
     end
 
     @@loaded = false
@@ -42,7 +40,6 @@ module Utopia
 
     def load!
       return false if loaded?
-
       files_in_load_path.each{|file| load file }
 
       @@loaded = true
