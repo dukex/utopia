@@ -1,5 +1,6 @@
 require "utopia/engine"
 
+
 module Utopia
   autoload :Application,          'utopia/application'
   autoload :BaseController,       'utopia/base_controller'
@@ -9,7 +10,7 @@ module Utopia
   autoload :ResourceDSL,          'utopia/resource_dsl'
 
   class << self
-    # the utopia application with the methods to application work
+    # the Application to this application
     def application
       @application ||= ::Utopia::Application.new
     end

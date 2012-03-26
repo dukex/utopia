@@ -21,7 +21,13 @@ module Utopia
     #   rails g utopia:resource lei
     #
     # This command you be create a lei.rb path on app/resource with the content
-    #   Utopia.register :lei
+    #   Utopia.register :lei do
+    #      configs...
+    #   end
+    #
+    # or
+    #
+    #   Utopia.regsiter :lei
     #
     # After, you can enter on */leis.json* for example and see your resource expose
     #
@@ -29,11 +35,20 @@ module Utopia
       resource = find_or_create_resource(resource_name, options, &block)
     end
 
-    def router # :nodoc:
+    # The Router to this application
+    #
+    def router
       @router ||= Router.new(self)
     end
 
-    def routes(rails_router) # :nodoc:
+    # Create the routes to resource on your application
+    # use:
+    #
+    #   YourApplication::Application.routes.draw do
+    #     Utopia.routes(self)
+    #   end
+    #
+    def routes(rails_router)
       load!
       router.apply(rails_router)
     end
@@ -46,11 +61,12 @@ module Utopia
 
     @@loaded = false
 
-    def loaded? # :nodoc:
+    # verify if the application is loaded or not
+    def loaded?
       @@loaded
     end
 
-    # Load files in _files_in_load_path_ var
+    # Load files in _files_in_load_path_ and set @loaded to true
     def load!
       return false if loaded?
       files_in_load_path.each{|file| load file }
@@ -58,8 +74,8 @@ module Utopia
       @@loaded = true
     end
 
-    # Returns ALL the files to load from all the load paths
-    def files_in_load_path # :nodoc:
+    # get files to (re)load
+    def files_in_load_path
       load_paths.flatten.compact.uniq.collect{|path| Dir["#{path}/**/*.rb"] }.flatten
     end
   end
