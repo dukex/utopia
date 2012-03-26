@@ -7,4 +7,8 @@ describe Utopia do
       Utopia.send(method)
     end
   end
+
+  it "should be Application" do
+    Utopia.application.class.should == Utopia::Application
+  end
 end
