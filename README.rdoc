@@ -5,8 +5,10 @@ Quando minha Utopia de Abertura de Dados por parte do governo for realidade,
 ainda então, estaremos caminhando para um pais mais democratico
 
 == Install
-UtopiaData run on top of Rails application
-  gem 'utopia_data' # on Gemfile
+UtopiaData run on top of Rails application, on your Gemfile
+  gem 'utopia_data'
+  gem "inherited_resources"
+  gem "roar-rails"
 
   bundle install
   bundle exec rails g utopia:resource law
