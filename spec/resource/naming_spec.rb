@@ -8,56 +8,56 @@ module UtopiaData
     let(:application){ UtopiaData::Application.new }
 
     def config(options = {})
-      @config ||= Resource.new(:category)
+      @config ||= Resource.new(:lei)
     end
 
-    module ::Mock class Resource < ActiveRecord::Base; end; end
-    module NoActiveModel class Resource; end; end
+    module ::Mock class Lei < ActiveRecord::Base; end; end
+    module NoActiveModel class Lei; end; end
 
     describe "singular resource name" do
       context "when class" do
         it "should be the underscored singular resource name" do
-          config.resource_name.singular.should == "category"
+          config.resource_name.singular.should == "lei"
         end
       end
       context "when a class in a module" do
         it "should underscore the module and the class" do
-          Resource.new(:"mock/resource").resource_name.singular.should == "mock_resource"
+          Resource.new(:"mock/lei").resource_name.singular.should == "mock_lei"
         end
       end
       context "when you pass the 'as' option" do
         it "should underscore the passed through string" do
-          Resource.new(:category, :as => "Blog Category").resource_name.singular.should == "blog_category"
+          Resource.new(:lei, :as => "Blog Category").resource_name.singular.should == "blog_category"
         end
       end
     end
 
     describe "resource label" do
       it "should return a pretty name" do
-        config.resource_label.should == "Category"
+        config.resource_label.should == "Lei"
       end
 
       it "should return the plural version" do
-        config.plural_resource_label.should == "Categories"
+        config.plural_resource_label.should == "Leis"
       end
 
       it "should return options[:as] the plural version" do
-        Resource.new(:category, :as => "My Category").plural_resource_label.should == "My Categories"
+        Resource.new(:lei, :as => "My Category").plural_resource_label.should == "My Categories"
       end
 
       context "when the :as option is given" do
         it "should return the custom name" do
-          Resource.new(:category, :as => "My Category").resource_label.should == "My Category"
+          Resource.new(:lei, :as => "My Category").resource_label.should == "My Category"
         end
       end
 
       context "when a class in a module" do
         it "should include the module and the class" do
-          Resource.new(:"mock/resource").resource_label.should == "Mock Resource"
+          Resource.new(:"mock/lei").resource_label.should == "Mock Lei"
         end
 
         it "should include the module and the pluralized class" do
-          Resource.new(:"mock/resource").plural_resource_label.should == "Mock Resources"
+          Resource.new(:"mock/lei").plural_resource_label.should == "Mock Leis"
         end
       end
 
