@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    utopia (0.0.1)
+    utopiadata (0.0.1)
       inherited_resources
       rails (~> 3.2.2)
       roar-rails
@@ -139,4 +139,4 @@ DEPENDENCIES
   rspec-rails
   simplecov
   sqlite3
-  utopia!
+  utopiadata!

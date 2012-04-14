@@ -5,7 +5,7 @@ require "utopia/version"
 
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
-  s.name        = "utopia"
+  s.name        = "utopiadata"
   s.version     = Utopia::VERSION
   s.date        = Time.now.strftime('%Y-%m-%d')
   s.authors     = ["Duke"]
