@@ -19,7 +19,6 @@
 #
 #++
 
-# desc "Explaining what the task does"
-# task :utopia do
-#   # Task goes here
-# end
+module UtopiaData
+  VERSION = "0.0.1"
+end

@@ -19,7 +19,7 @@
 #
 #++
 
-# desc "Explaining what the task does"
-# task :utopia do
-#   # Task goes here
-# end
+module UtopiaData
+  class ApplicationController < ActionController::Base
+  end
+end

@@ -19,7 +19,21 @@
 #
 #++
 
-# desc "Explaining what the task does"
-# task :utopia do
-#   # Task goes here
-# end
+module UtopiaData
+  class Router
+    def initialize(application)
+      @application = application
+    end
+
+    def apply(router)
+      router.instance_exec(@application.resources) do |resources|
+        resources.each do |k, config|
+          route_definition_block = Proc.new do
+            resources config.resource_name.route_key, :only => [:index, :show]
+          end
+          instance_eval &route_definition_block
+        end
+      end
+    end
+  end
+end

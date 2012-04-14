@@ -1,10 +1,10 @@
 require 'spec_helper'
 
-describe Utopia, "Routing", :type => :routing do
+describe UtopiaData, "Routing", :type => :routing do
   include Rails.application.routes.url_helpers
 
   before(:each) do
-    load_resources { Utopia.register(:lei) }
+    load_resources { UtopiaData.register(:lei) }
   end
 
   it "should route the index path" do

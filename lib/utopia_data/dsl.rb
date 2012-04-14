@@ -19,7 +19,35 @@
 #
 #++
 
-# desc "Explaining what the task does"
-# task :utopia do
-#   # Task goes here
-# end
+module UtopiaData
+
+  #
+  # The UtopiaData DSL. This class is where all the registration blocks
+  # are instance eval'd. This is the central place for the API given to
+  # users of UtopiaData
+  #
+  class DSL
+    # Runs the registration block inside this object
+    def run_registration_block(config, &block)
+      @config = config
+      instance_eval &block if block_given?
+    end
+
+    private
+
+    # The instance of UtopiaData::Config that's being registered
+    # currently. You can use this within your registration blocks to
+    # modify options:
+    #
+    # eg:
+    #
+    #   UtopiaData.register :post do
+    #     config.table_name = "por22"
+    #   end
+    #
+    def config
+      @config
+    end
+
+  end
+end

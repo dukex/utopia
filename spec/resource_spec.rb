@@ -1,9 +1,9 @@
 require 'spec_helper'
 
-module Utopia
+module UtopiaData
   describe Resource do
     before { load_defaults! }
-    let(:application){ Utopia::Application.new }
+    let(:application){ UtopiaData::Application.new }
 
     def config(options = {}, &block)
       @config ||= Resource.new(:lei, options, &block)

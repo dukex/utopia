@@ -19,7 +19,11 @@
 #
 #++
 
-# desc "Explaining what the task does"
-# task :utopia do
-#   # Task goes here
-# end
+require 'inherited_resources'
+
+module UtopiaData
+  class BaseController < ::InheritedResources::Base
+    actions :index, :show
+    respond_to :xml, :json#, :cvs
+  end
+end

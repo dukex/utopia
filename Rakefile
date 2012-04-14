@@ -14,7 +14,7 @@ end
 
 RDoc::Task.new(:rdoc) do |rdoc|
   rdoc.rdoc_dir = 'rdoc'
-  rdoc.title    = 'Utopia Documentation'
+  rdoc.title    = 'UtopiaData Documentation'
   rdoc.options += %w[ --line-numbers --charset utf-8 -f horo]
   rdoc.rdoc_files.include('README.rdoc')
   rdoc.rdoc_files.include('lib/**/*.rb')

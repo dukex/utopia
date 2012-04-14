@@ -9,10 +9,10 @@ require File.expand_path("../../spec/dummy/config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
 
-module UtopiaIntegrationSpecHelper
+module UtopiaDataIntegrationSpecHelper
   def load_defaults!
-    Utopia.load!
-    Utopia.register(:lei)
+    UtopiaData.load!
+    UtopiaData.register(:lei)
   end
 
   def load_resources
@@ -28,7 +28,7 @@ end
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
-include UtopiaIntegrationSpecHelper
+include UtopiaDataIntegrationSpecHelper
 load_defaults!
 reload_routes!
 

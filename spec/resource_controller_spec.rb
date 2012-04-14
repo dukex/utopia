@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe Utopia::ResourceController do
-  let(:controller) { Utopia::ResourceController.new }
+describe UtopiaData::ResourceController do
+  let(:controller) { UtopiaData::ResourceController.new }
 
 end
 

@@ -19,7 +19,17 @@
 #
 #++
 
-# desc "Explaining what the task does"
-# task :utopia do
-#   # Task goes here
-# end
+module UtopiaData
+  class InstallGenerator < Rails::Generators::NamedBase
+    source_root File.expand_path('../../templates', __FILE__)
+    argument :name, :default => ""
+
+    def copy_initializer
+      template 'initializer.rb.erb', 'config/initializers/utopia_data.rb'
+    end
+
+    def setup_routes
+      route "UtopiaData.routes(self)"
+    end
+  end
+end
