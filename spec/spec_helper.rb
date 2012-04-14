@@ -19,8 +19,13 @@ module UtopiaDataIntegrationSpecHelper
     yield
     reload_routes!
   end
+
   def reload_routes!
     Rails.application.reload_routes!
+  end
+
+  def run_migrations!
+    system "cd spec/dummy && RAILS_ENV=test bundle exec rake db:migrate"
   end
 end
 
@@ -31,6 +36,7 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 include UtopiaDataIntegrationSpecHelper
 load_defaults!
 reload_routes!
+run_migrations!
 
 RSpec.configure do |config|
   # ## Mock Framework
