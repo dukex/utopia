@@ -4,6 +4,7 @@ PATH
     utopia (0.0.1)
       inherited_resources
       rails (~> 3.2.2)
+      roar-rails
 
 GEM
   remote: http://rubygems.org/
