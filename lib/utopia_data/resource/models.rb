@@ -22,10 +22,12 @@
 module UtopiaData
   class Resource
     module Models
+      # @return [String] the model class name
       def model_name
         resource_class_name
       end
 
+      # @return [ActiveRecord] the model to current resource
       def model
         @model ||= resource_class
       end
@@ -36,24 +38,42 @@ module UtopiaData
       end
 
       def set(attribute, options = {})
-        @columns << attribute
+        @columns << attribute.to_s
       end
 
       def columns
-        @columns ||= []
+        @columns ||= model.column_names
       end
 
       # Create the resource model
       def create_resource_model
-        table_name = @config[:table_name] ? "self.table_name = '#{@config[:table_name]}'" : nil
-        model_class = <<-MODEL
-          class ::#{model_name} < ActiveRecord::Base
-            #{table_name}
-            attr_accessor #{columns.join(", ")}
-          end
-        MODEL
-        eval model_class
+        initialize_model
+        configure_model
       end
+
+      private
+        def set_custom_table_name_if_necessary
+          @config[:table_name] ? "self.table_name = '#{@config[:table_name]}'" : nil
+        end
+
+        def initialize_model
+          model_class = <<-MODEL
+            class ::#{model_name} < ActiveRecord::Base
+              attr_accessible nil
+            end
+          MODEL
+          eval model_class
+        end
+
+        def configure_model
+          model_class = <<-MODEL
+            class ::#{model_name}
+              attr_accessible #{columns.map{|c| ":#{c}"}.join(", ")}
+            end
+          MODEL
+          @model.table_name =  @config[:table_name] unless @config[:table_name].nil?
+          eval model_class
+        end
     end
   end
 end
