@@ -52,10 +52,6 @@ module UtopiaData
       end
 
       private
-        def set_custom_table_name_if_necessary
-          @config[:table_name] ? "self.table_name = '#{@config[:table_name]}'" : nil
-        end
-
         def initialize_model
           model_class = <<-MODEL
             class ::#{model_name} < ActiveRecord::Base
