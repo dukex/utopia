@@ -4,11 +4,13 @@
 Quando minha Utopia de Abertura de Dados por parte do governo for realidade,
 ainda então, estaremos caminhando para um pais mais democratico
 
-== Install to Test
-on your workdir
-  rails new aproject_test -T
-  cd aproject_test
-  BUNDLE_GEMFILE=../pathToUtopiaFolder/Gemfile b rails g utopia:install # install utopia
+== Install
+Utopia run on top of Rails application
+  gem 'utopiadata' # on Gemfile
+
+  bundle install
+  bundle exec rails g utopia:resource law
+
 
 == Configure
 Please check your database config on *database.yml*
@@ -17,7 +19,7 @@ Please check your database config on *database.yml*
 Atention! create a resource *DON'T* touch on database, *you need* create your table before it
 
 In the example _law_ is my resource, the should be a word in singular
-  BUNDLE_GEMFILE=../pathToUtopiaFolder/Gemfile b rails g utopia:resource law
+  bundle exec rails g utopia:resource law
 
 It will create app/resource/law.rb, like it
   Utopia.register :site do
@@ -41,7 +43,7 @@ to change what attribute you want to expose, you can use attribites config
 All other attributes will be protected
 
 == Run Server
-  BUNDLE_GEMFILE=../pathToUtopiaFolder/Gemfile b rails s # run server
+  bundle exec  rails s # run server
 
 == License
 
