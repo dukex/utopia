@@ -13,4 +13,5 @@ group :development do
   gem "jquery-rails"
   gem "horo"
   gem "simplecov"
+  gem "sqlite3"
 end
