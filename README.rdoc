@@ -24,7 +24,7 @@ In the example _law_ is my resource, the should be a word in singular
   bundle exec rails g utopia:resource law
 
 It will create app/resource/law.rb, like it
-  UtopiaData.register :site do
+  UtopiaData.register :law do
   end
 
 === Changing default
