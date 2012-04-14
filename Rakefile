@@ -24,6 +24,18 @@ APP_RAKEFILE = File.expand_path("../spec/dummy/Rakefile", __FILE__)
 load 'rails/tasks/engine.rake'
 
 
+desc "update documentation"
+task :update_documentation  => :rdoc do
+
+  system 'mv rdoc /tmp/rdoc'
+  system 'git checkout gh-pages'
+  system 'rm -Rf doc/code'
+  system 'mv /tmp/rdoc doc/code'
+  system 'git add doc/'
+  system 'git commit -m "updated code documentation"'
+  system 'git push origin gh-pages'
+  system 'git checkout master'
+
+end
 
 Bundler::GemHelper.install_tasks
-
