@@ -32,6 +32,14 @@ module UtopiaData
             include Roar::Representer::Feature::Hypermedia
 
             #{columns.map{|c| "property :#{c}" }.join("\n")}
+
+            link :self do
+              #{resource_name.singular}_url(self)
+            end
+
+            link :#{resource_name.plural} do
+              #{resource_name.plural}_url
+            end
           end
         MODEL
         eval representer_module
