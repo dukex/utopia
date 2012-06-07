@@ -28,8 +28,8 @@ module UtopiaData
   #
   class DSL
     # Runs the registration block inside this object
-    def run_registration_block(config, &block)
-      @config = config
+    def run_registration_block(resource, &block)
+      @resource = resource
       instance_eval &block if block_given?
     end
 
@@ -45,8 +45,8 @@ module UtopiaData
     #     config.table_name = "por22"
     #   end
     #
-    def config
-      @config
+    def resource
+      @resource
     end
 
   end

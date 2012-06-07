@@ -60,8 +60,9 @@ module UtopiaData
       @resource_dsl ||= ResourceDSL.new
     end
 
-    def parse_registration_block(config, &block)
-      resource_dsl.run_registration_block(config, &block)
+
+    def parse_registration_block(the_resource, &block)
+      resource_dsl.run_registration_block(the_resource, &block)
     end
 
     def create!

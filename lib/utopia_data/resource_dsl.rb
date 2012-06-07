@@ -25,11 +25,11 @@ module UtopiaData
     private
 
     def table_name(name)
-      config.config[:table_name] = name
+      resource.config[:table_name] = name
     end
 
     def attributes(&block)
-      config.attributes(&block)
+      resource.attributes(&block)
     end
   end
 end
