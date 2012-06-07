@@ -20,6 +20,7 @@ module UtopiaData
       end
 
       it "should have attributes accessible" do
+        resource.model.create! number: "13XP"
         resource.model.last.number.should == "13XP"
       end
     end
