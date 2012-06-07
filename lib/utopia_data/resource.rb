@@ -38,6 +38,7 @@ module UtopiaData
 
     def initialize(resource_name, options = {}, &block)
       @config ||= {}
+      @config[:model] ||= {}
       parse_registration_block(self, &block) if block_given?
       @resource_class_name = "#{resource_name.to_s.classify}"
       @options = options

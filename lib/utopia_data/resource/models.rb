@@ -67,6 +67,11 @@ module UtopiaData
               attr_accessible #{columns.map{|c| ":#{c}"}.join(", ")}
             end
           MODEL
+
+          @config[:model].each do |config_model|
+            @model.send config_model[0], config_model[1]
+          end
+
           @model.table_name =  @config[:table_name] unless @config[:table_name].nil?
           eval model_class
         end

@@ -19,29 +19,10 @@
 #
 #++
 
-require "utopia_data/engine"
-
 module UtopiaData
-  autoload :Application,          'utopia_data/application'
-  autoload :BaseController,       'utopia_data/base_controller'
-  autoload :DSL,                  'utopia_data/dsl'
-  autoload :Resource,             'utopia_data/resource'
-  autoload :ResourceController,   'utopia_data/resource_controller'
-  autoload :ResourceDSL,          'utopia_data/resource_dsl'
-  autoload :ModelDSL,             'utopia_data/model_dsl'
-
-  class << self
-    # the Application to this application
-    def application
-      @application ||= ::UtopiaData::Application.new
+  class ModelDSL < DSL
+    def method_missing(m, *args, &block)
+      resource.config[:model][:"#{m}"] = args.first
     end
-
-    # TODO: documentation
-    def setup
-    end
-
-    delegate :register,      :to => :application
-    delegate :routes,        :to => :application
-    delegate :load!,         :to => :application
   end
 end

@@ -24,6 +24,12 @@ module UtopiaData
   class ResourceDSL < DSL
     private
 
+    def model(&block)
+      resource.config[:model] ||= {}
+      @model_dsl ||= ModelDSL.new
+      @model_dsl.run_registration_block(resource, &block)
+    end
+
     def table_name(name)
       resource.config[:table_name] = name
     end
