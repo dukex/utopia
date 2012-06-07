@@ -55,6 +55,15 @@ module UtopiaData
 
         expect{Lei.create!(:number => "14XP")}.to raise_error(ActiveModel::MassAssignmentSecurity::Error)
       end
+
+      it "should set has_one relationship" do
+        custom_resource = Resource.new :lei, {} do
+          model do
+            has_many :status
+          end
+        end
+        custom_resource.model.reflect_on_all_associations[0].name.should == :status
+      end
     end
   end
 end

@@ -12,7 +12,11 @@ require 'rspec/autorun'
 module UtopiaDataIntegrationSpecHelper
   def load_defaults!
     UtopiaData.load!
-    UtopiaData.register(:lei)
+    UtopiaData.register :lei do
+      model do
+        has_many :status
+      end
+    end
   end
 
   def load_resources
