@@ -10,8 +10,10 @@ UtopiaData run on top of Rails application, on your Gemfile
   gem "inherited_resources"
   gem "roar-rails"
 
+  rm -R app/* doc vendor
   bundle install
   bundle exec rails g utopia:resource law
+
 
 
 == Configure
