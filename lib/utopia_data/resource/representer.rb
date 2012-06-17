@@ -33,7 +33,7 @@ module UtopiaData
 
             #{columns.map{|c| "property :#{c}" }.join("\n")}
 
-            #{model.reflect_on_all_associations.map{|c| "collection :#{c.name}"  }.join("\n")}
+            #{model.reflect_on_all_associations.map{|c| "collection :#{c.name}" if c.collection?  }.join("\n")}
 
             link :self do
               #{resource_name.singular}_url(self)
