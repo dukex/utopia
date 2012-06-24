@@ -11,4 +11,5 @@ describe UtopiaData do
   it "should be Application" do
     UtopiaData.application.class.should == UtopiaData::Application
   end
+
 end
