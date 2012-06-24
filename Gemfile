@@ -15,4 +15,9 @@ group :development do
   gem "simplecov"
   gem "sqlite3"
   gem "autotest"
+
+end
+
+group :development, :test do
+  gem "pry"
 end
