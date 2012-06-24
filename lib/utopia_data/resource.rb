@@ -33,6 +33,8 @@ module UtopiaData
 
     # The name of the resource class
     attr_reader :resource_class_name
+    # The model class name
+    attr_reader :model_class_name
     # The configuration to resource
     attr_accessor :config
 
@@ -40,7 +42,8 @@ module UtopiaData
       @config ||= {}
       @config[:model] ||= {}
       parse_registration_block(self, &block) if block_given?
-      @resource_class_name = "#{resource_name.to_s.classify}"
+      @resource_class_name = resource_name.to_s.classify
+      @model_class_name = config[:class_name].nil? ? "#{resource_name.to_s.classify}" : config[:class_name]
       @options = options
       create!
     end

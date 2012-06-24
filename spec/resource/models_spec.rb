@@ -23,6 +23,10 @@ module UtopiaData
         resource.model.create! number: "13XP"
         resource.model.last.number.should == "13XP"
       end
+
+      it "should create a class with resource name" do
+         resource.model_name.should == "Lei"
+      end
     end
 
     describe "with custom config" do
@@ -35,7 +39,6 @@ module UtopiaData
           table_name "leis"
         end
       end
-
 
       it "should set columns only with name" do
         custom_resource = resource do
@@ -63,6 +66,13 @@ module UtopiaData
           end
         end
         custom_resource.model.reflect_on_all_associations[0].name.should == :status
+      end
+
+      it "should change the model class name" do
+        custom_resource = Resource.new :lei, {} do
+          class_name "Axp"
+        end
+        custom_resource.model_name.should == "Axp"
       end
     end
   end

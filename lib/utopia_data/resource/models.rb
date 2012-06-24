@@ -24,7 +24,7 @@ module UtopiaData
     module Models
       # @return [String] the model class name
       def model_name
-        resource_class_name
+        model_class_name
       end
 
       # @return [ActiveRecord] the model to current resource
@@ -56,14 +56,17 @@ module UtopiaData
           model_class = <<-MODEL
             class ::#{model_name} < ActiveRecord::Base
               attr_accessible nil
+              #{"self.table_name = '" + @config[:table_name] +"'" unless @config[:table_name].nil?}
             end
           MODEL
+
           eval model_class
         end
 
         def configure_model
+
           model_class = <<-MODEL
-            class ::#{model_name}
+            class ::#{model_name} < ActiveRecord::Base
               attr_accessible #{columns.map{|c| ":#{c}"}.join(", ")}
             end
           MODEL
