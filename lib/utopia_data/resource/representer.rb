@@ -22,6 +22,8 @@
 require 'roar/representer/json'
 require 'roar/representer/feature/hypermedia'
 
+
+
 module UtopiaData
   class Resource
     module Representer
@@ -33,7 +35,7 @@ module UtopiaData
 
             #{columns.map{|c| "property :#{c}" }.join("\n")}
 
-            #{model.reflect_on_all_associations.map{|c| "collection :#{c.name}" if c.collection?  }.join("\n")}
+            #{model.reflect_on_all_associations.map{|c| "#{c.collection? ? 'collection': 'property'} :#{c.name}" }.join("\n")}
 
             link :self do
               #{resource_name.singular}_url(self)
