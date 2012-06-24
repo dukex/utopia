@@ -27,10 +27,13 @@ module UtopiaData
 
     def apply(router)
       router.instance_exec(@application.resources) do |resources|
-        resources.each do |k, config|
+        resources.each do |k, resource|
           route_definition_block = Proc.new do
-            resources config.resource_name.route_key, :only => [:index, :show]
+            resources resource.resource_name.route_key, :only => [:index, :show] do
+              instance_eval &resource.config[:routes] if resource.config[:routes]
+            end
           end
+
           instance_eval &route_definition_block
         end
       end

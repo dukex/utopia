@@ -25,7 +25,6 @@ module UtopiaData
     private
 
 
-
     def model(&block)
       resource.config[:model] ||= {}
       @model_dsl ||= ModelDSL.new
@@ -42,6 +41,10 @@ module UtopiaData
 
     def class_name(name)
       resource.config[:class_name] = name
+    end
+
+    def routes(&block)
+      resource.config[:routes] = block
     end
   end
 end
