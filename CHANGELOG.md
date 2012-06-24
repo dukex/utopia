@@ -1,6 +1,7 @@
 # CHANGELOG
 
 ## (master)
+* added class_name config
 * added collections to representer(roar-rails) 
 * added model dsl, now you can use callbacks, validations and query from active record
 
