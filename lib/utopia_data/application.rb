@@ -87,14 +87,19 @@ module UtopiaData
       @@loaded
     end
 
-    # Load files in _files_in_load_path_ and set @loaded to true
+    # Load set @loaded to false
+    def unload!
+      @resources = {}
+      @@loaded = false
+    end
+
+    # unload files in _files_in_load_path_ and set @loaded to true
     def load!
       return false if loaded?
       files_in_load_path.each{|file| load file }
 
       @@loaded = true
     end
-
     # get files to (re)load
     def files_in_load_path
       load_paths.flatten.compact.uniq.collect{|path| Dir["#{path}/**/*.rb"] }.flatten

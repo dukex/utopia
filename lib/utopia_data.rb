@@ -38,10 +38,12 @@ module UtopiaData
 
     # TODO: documentation
     def setup
+
     end
 
     delegate :register,      :to => :application
     delegate :routes,        :to => :application
     delegate :load!,         :to => :application
+    delegate :unload!,         :to => :application
   end
 end
