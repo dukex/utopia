@@ -71,8 +71,8 @@ module UtopiaData
 
     def create!
       create_resource_model
-      create_resource_representer
-      create_resource_controller
+      create_resource_representer unless config[:no_route]
+      create_resource_controller unless config[:no_route]
     end
   end
 end

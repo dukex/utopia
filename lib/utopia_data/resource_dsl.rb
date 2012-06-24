@@ -22,6 +22,12 @@
 module UtopiaData
   # This is the class where all the register blocks are instance eval'd
   class ResourceDSL < DSL
+
+    def method_missing(meth, *args, &block)
+      super unless %w(table_name class_name no_route).include?(meth.to_s)
+      resource.config[meth.to_sym] = args.first
+    end
+
     private
 
 
@@ -31,20 +37,13 @@ module UtopiaData
       @model_dsl.run_registration_block(resource, &block)
     end
 
-    def table_name(name)
-      resource.config[:table_name] = name
-    end
-
     def attributes(&block)
       resource.attributes(&block)
-    end
-
-    def class_name(name)
-      resource.config[:class_name] = name
     end
 
     def routes(&block)
       resource.config[:routes] = block
     end
+
   end
 end

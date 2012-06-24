@@ -37,7 +37,7 @@ describe UtopiaData, "Routing", :type => :routing do
        end
     end
 
-    it "" do
+    it "should created a nested route to leis" do
       lei_votes_path(1).should == "/leis/1/votes"
     end
   end
