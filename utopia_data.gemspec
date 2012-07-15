@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
   s.summary     = "Gem to open data."
   s.description = "Gem to open data."
 
-  s.files = Dir["{app,config,db,lib}/**/*"] + ["COPYING", "Rakefile", "README.rdoc"]
+  s.files = Dir["{app,config,db,lib}/**/*"] + ["COPYING", "Rakefile", "README.md"]
 
   s.add_dependency "rails", "~> 3.2.2"
   s.add_dependency "inherited_resources", "~> 1.3.0"
