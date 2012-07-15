@@ -22,14 +22,9 @@
 module UtopiaData
   class Resource
     module Models
-      # @return [String] the model class name
-      def model_name
-        model_class_name
-      end
-
       # @return [ActiveRecord] the model to current resource
       def model
-        @model ||= resource_class
+        @model ||= model_class
       end
 
       def attributes(&block)

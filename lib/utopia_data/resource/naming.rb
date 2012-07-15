@@ -21,38 +21,53 @@
 
 module UtopiaData
   class Resource
-
     module Naming
+      attr_reader :resource_name
+      attr_reader :resource_class
 
-      # Returns a name used to uniquely identify this resource
-      # this should be an instance of ActiveAdmin:Resource::Name, which responds to
-      # #singular, #plural, #route_key, #human etc.
-      def resource_name
-        custom_name = @options[:as] && @options[:as].gsub(/\s/,'')
-        @resource_name ||= if custom_name || !resource_class.respond_to?(:model_name)
-          Resource::Name.new(resource_class, custom_name)
-        else
-          Resource::Name.new(resource_class)
-        end
+      # config the @resource_name_class, it will try use config[:class_name]
+      def config_names(name)
+        @resource_name_class = config[:class_name].nil? ? name.to_s.classify : config[:class_name]
       end
 
-      # Returns the name to call this resource such as "Bank Account"
-      def resource_label
-        if @options[:as]
-          @options[:as]
-        else
-         resource_name.human(:default => resource_name.gsub('::', ' ')).titleize
-       end
-     end
-
-     def plural_resource_label
-      if @options[:as]
-        @options[:as].pluralize
-      else
-        resource_name.human(:count => 3, :default => resource_label.pluralize).titleize
+      # @return [String] the model class name
+      def model_name #
+        resource_name_class
       end
+
+      def table_name #
+        config[:table_name].nil? ? "#{resource_name_class.downcase.pluralize}" : config[:table_name]
+      end
+
+      def model_class #
+        @model_class ||= ActiveSupport::Dependencies.constantize(resource_name_class)
+      end
+
+      alias_method  :resource_class, :model_class
+
+      def resource_name #
+        @resource_name ||= Resource::Name.new(model_class)
+      end
+
+      def representer_name #
+        "#{resource_name}Representer"
+      end
+
+      def controller_class #
+        @controller_class ||= ActiveSupport::Dependencies.constantize(controller_name)
+      end
+
+      def controller_name #
+        "#{resource_name.pluralize}Controller"
+      end
+
+      #@model_class_name =
+      #@controller_class_name = config[:class_name].nil? ? "#{resource_class_name.pluralize}Controller" : "#{config[:class_name]}Controller"
+
+      #def resource_class_name
+      #  @resource_class_name = resource_name
+      #end
     end
-  end
 
     # A subclass of ActiveModel::Name which supports the different APIs presented
     # in Rails < 3.1 and > 3.1.
@@ -62,9 +77,9 @@ module UtopiaData
         super(klass, nil, name)
       end
 
-      def route_key
-        plural
-      end
-    end
-  end
+     # def route_key
+      #  plural
+     # end
+   end
+ end
 end

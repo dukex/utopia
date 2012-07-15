@@ -24,11 +24,11 @@ module UtopiaData
   # It implements actions and helpers for resources.
   class ResourceController < BaseController
   	class << self
-  		def utopia_config=(config)
-  			@utopia_config = config
+  		def utopia_config=(resource)
+  			@utopia_config = resource
 
-  			defaults  :resource_class => config.resource_class,
-  								:instance_name => config.resource_name.singular
+  			defaults  :resource_class => resource.resource_class,
+  								:instance_name => resource.resource_name.singular
   		end
   	end
   end

@@ -32,30 +32,21 @@ module UtopiaData
     include Representer
 
     # The name of the resource class
-    attr_reader :resource_class_name
+    #attr_reader :resource_class_name
     # The model class name
-    attr_reader :model_class_name
+    # The model class name
+    #attr_reader :controller_class_name
     # The configuration to resource
     attr_accessor :config
+    attr_reader :resource_name_class
 
-    def initialize(resource_name, options = {}, &block)
+    def initialize(_resource_name, options = {}, &block)
       @config ||= {}
       @config[:model] ||= {}
+      config_names(_resource_name)
       parse_registration_block(self, &block) if block_given?
-      @resource_class_name = resource_name.to_s.classify
-      @model_class_name = config[:class_name].nil? ? "#{resource_name.to_s.classify}" : config[:class_name]
       @options = options
       create!
-    end
-
-    # The class this resource wraps. If you register the Post model, Resource#resource_class
-    # will point to the Post class
-    def resource_class
-      ActiveSupport::Dependencies.constantize(resource_class_name)
-    end
-
-    def resource_table_name
-      resource_class.quoted_table_name
     end
 
     protected

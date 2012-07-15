@@ -7,76 +7,47 @@ module UtopiaData
 
     let(:application){ UtopiaData::Application.new }
 
-    def config(options = {})
-      @config ||= Resource.new(:lei)
+    def config(options = {}, &block)
+      @config = Resource.new(:lei, options, &block)
     end
 
-    module ::Mock class Lei < ActiveRecord::Base; end; end
-    module NoActiveModel class Lei; end; end
+    describe "config_names" do
+      it "should set resource_name_class as 'Lei'" do
+        config.resource_name_class.should == 'Lei'
+      end
 
-    describe "singular resource name" do
-      context "when class" do
-        it "should be the underscored singular resource name" do
-          config.resource_name.singular.should == "lei"
-        end
-      end
-      context "when a class in a module" do
-        it "should underscore the module and the class" do
-          Resource.new(:"mock/lei").resource_name.singular.should == "mock_lei"
-        end
-      end
-      context "when you pass the 'as' option" do
-        it "should underscore the passed through string" do
-          Resource.new(:lei, :as => "Blog Category").resource_name.singular.should == "blog_category"
-        end
+      it "should set a custom class name"
+    end
+
+    describe "model_name" do
+      it "should set resource_name_class as Lei" do
+        config.model_name.should == 'Lei'
       end
     end
 
-    describe "resource label" do
-      it "should return a pretty name" do
-        config.resource_label.should == "Lei"
+      describe "table_name" do #
+        it "should test"
       end
 
-      it "should return the plural version" do
-        config.plural_resource_label.should == "Leis"
+      describe "model_class" do #
+        it "should test"
       end
 
-      it "should return options[:as] the plural version" do
-        Resource.new(:lei, :as => "My Category").plural_resource_label.should == "My Categories"
+      describe "resource_name" do #
+        it "should test"
+     end
+
+      describe "representer_name" do #
+        it "should test"
       end
 
-      context "when the :as option is given" do
-        it "should return the custom name" do
-          Resource.new(:lei, :as => "My Category").resource_label.should == "My Category"
-        end
+
+      describe "controller_class" do #
+        it "should test"
+     end
+
+      describe "controller_name" do #
+        it "should test"
       end
-
-      context "when a class in a module" do
-        it "should include the module and the class" do
-          Resource.new(:"mock/lei").resource_label.should == "Mock Lei"
-        end
-
-        it "should include the module and the pluralized class" do
-          Resource.new(:"mock/lei").plural_resource_label.should == "Mock Leis"
-        end
-      end
-
-      describe "I18n integration" do
-        describe "singular label" do
-          it "should return the titleized model_name.human" do
-            config.resource_name.should_receive(:human).and_return "Da category"
-            config.resource_label.should == "Da Category"
-          end
-        end
-
-        describe "plural label" do
-          it "should return the titleized plural version defined by i18n if available" do
-            I18n.should_receive(:translate).at_least(:once).and_return("Da categories")
-            config.plural_resource_label.should == "Da Categories"
-          end
-        end
-
-      end
-    end
-  end
-end
+   end
+ end
