@@ -1,0 +1,166 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Utopia by vertigem</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Utopia</h1>
+        <p>Easy way to open (any) data</p>
+
+        <p class="view"><a href="https://github.com/vertigem/utopia">View the Project on GitHub <small>vertigem/utopia</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/vertigem/utopia/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/vertigem/utopia/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/vertigem/utopia">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>UtopiaData Documentation</h1>
+
+<h2>About</h2>
+
+<p>uData is a (easy)way to expose your data, and open data. Using Rails in the top of system, only connect in database and configure the resources than will be exposed.</p>
+
+<p>UtopiaData will create a read-only REST API (with <strong>hypermedia</strong>) to exposed resource</p>
+
+<h2>Install</h2>
+
+<p>The UtopiaData work with rails app, before all create a small rails app, run:</p>
+
+<pre><code>gem install rails # install rails
+rails new project_name # create a rails app
+cd project_name # enter in created project
+bundle istall # install the dependencies
+</code></pre>
+
+<p>Now add UtopiaData as a dependencies, in your <strong>Gemfile</strong> add:</p>
+
+<pre><code>gem 'utopia_data'
+gem "inherited_resources"
+gem "roar-rails"
+</code></pre>
+
+<p>And run bundle to install it:
+    bundle install</p>
+
+<p>Install UtopiaData
+    bundle exec rails g utopia_data:install</p>
+
+<h2>Configure</h2>
+
+<p>UtopiaData will connect to database and search the resource, the configure is very simple, on <em>config/database.yml</em> please tell database info, to test your project in development is very recommended create a mirror of your database and configure development environment:</p>
+
+<pre><code>development:
+    adapter: sqlite3
+    database: db/development.sqlite3
+    pool: 5
+    timeout: 5000
+
+production:
+    adapter: sqlite3
+    database: db/production.sqlite3
+    pool: 5
+    timeout: 5000
+</code></pre>
+
+<p>UtopiaData <strong>DON'T WRITES</strong> in database, but many people think is better create a read-only mirror database. The UtopiaData expects only than the database is accessible.</p>
+
+<h2>Create a Resource</h2>
+
+<p>Attention! When you create a resource, this <em>DON'T</em> touch on database, the database should exist:</p>
+
+<p>In the example <em>station</em> will be my resource.</p>
+
+<p>First let's go create this resource, We need run:
+    bundle exec rails g utopia_data:resource station</p>
+
+<p>It will create app/resource/station.rb, like it:
+    UtopiaData.register :station do
+    end</p>
+
+<h3>Changing default</h3>
+
+<h4>Database Table Name</h4>
+
+<p>To change the database table name you can change <em>table_name</em> config
+    UtopiaData.register :station do
+        table_name "S1A24"
+    end</p>
+
+<h4>Attributes</h4>
+
+<p>To change what attribute you want to expose, you can use <em>attributes</em> config
+    UtopiaData.register :station do
+        attributes do
+            set :number
+            set :author
+        end
+    end</p>
+
+<p>All other attributes will be protected and won't exposed</p>
+
+<h4>Class Name (model)</h4>
+
+<p>To change the model name, you can use <em>class_name</em> config
+    UtopiaData.register : station do
+        class_name "TrainStation"
+    end</p>
+
+<h4>Model config</h4>
+
+<p>To add behavior to you model, you can use <em>model</em> config</p>
+
+<pre><code>UtopiaData.register :station do
+    model do
+        default_scoped order('created_at')
+    end
+end
+</code></pre>
+
+<p>In the <em>model</em> you can use any Active Record(Rails) config, to learn more about it follow links </p>
+
+<p><a href="http://guides.rubyonrails.org/active_record_validations_callbacks.html">Validations and Callbacks</a>
+<a href="http://guides.rubyonrails.org/association_basics.html">Associations</a>
+<a href="http://guides.rubyonrails.org/active_record_querying.html">Query Interface</a></p>
+
+<h2>Running Server</h2>
+
+<pre><code>bundle exec rails s # run server
+</code></pre>
+
+<h2>License</h2>
+
+<p>See COPYING file</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/vertigem">vertigem</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-27916563-4");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
