@@ -32,7 +32,7 @@ module UtopiaData
         controller_class = <<-CONTROLLER
           class ::#{controller_name} < UtopiaData::ResourceController
             responders Roar::Rails::Responder
-            #{model.reflect_on_all_associations(:belongs_to).map{|association| "belongs_to :#{association.name}" }.join("\n")}
+            #{model.reflect_on_all_associations(:belongs_to).map{|association| "belongs_to :#{association.name}, :optional => true" }.join("\n")}
 
           end
         CONTROLLER
