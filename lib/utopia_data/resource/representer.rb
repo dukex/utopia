@@ -35,7 +35,6 @@ module UtopiaData
             include Roar::Representer::Feature::Hypermedia
 
             #{columns.map{|c| "property :#{c}" }.join("\n")}
-
             #{model.reflect_on_all_associations.map{|c| "#{c.collection? ? 'collection': 'property'} :#{c.name}" }.join("\n")}
 
             link :self do

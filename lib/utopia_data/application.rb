@@ -25,7 +25,6 @@ module UtopiaData
   # In UtopiaData 0.0.1, UtopiaData::Application object is to manipulate the utopia system, here
   # there are the recources, loads, start routes, etc
 	class Application
-
     # A hash of all the registered resources
     attr_accessor  :resources, :load_paths
 
@@ -76,7 +75,10 @@ module UtopiaData
 
     def find_or_create_resource(name, options = {}, &block) # :nodoc:
       return @resources[name] if resources[name]
+      return unless ActiveRecord::Migration.table_exists?(:"#{table_name(options, name.to_s)}")
+
       resource = Resource.new(name, options, &block)
+
       @resources[name] = resource
     end
 
@@ -103,6 +105,10 @@ module UtopiaData
     # get files to (re)load
     def files_in_load_path
       load_paths.flatten.compact.uniq.collect{|path| Dir["#{path}/**/*.rb"] }.flatten
+    end
+
+    def table_name(config, resource_name)
+      config[:table_name].nil? ? "#{resource_name.downcase.pluralize}" : config[:table_name]
     end
   end
 end
