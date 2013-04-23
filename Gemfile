@@ -14,8 +14,7 @@ group :development do
   gem "horo"
   gem "simplecov"
   gem "sqlite3"
-  gem "autotest"
-
+  #gem "autotest"
 end
 
 group :development, :test do
