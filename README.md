@@ -20,9 +20,11 @@ Now add UtopiaData as a dependencies, in your **Gemfile** add:
 	gem "roar-rails"
 
 And run bundle to install it:
+
 	bundle install
 
 Install UtopiaData
+
 	bundle exec rails g utopia_data:install
 
 ## Configure
