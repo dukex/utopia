@@ -10,6 +10,10 @@ module UtopiaData
       self.resources ||= {}
     end
 
+    def setup &block
+
+    end
+
     def register(resource_name, options = {}, &block)
       find_or_create_resource(resource_name, options, &block)
     end

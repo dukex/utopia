@@ -16,5 +16,6 @@ module UtopiaData
 
     # register a new resource
     def_delegator :application, :register, :register
+    def_delegator :application, :setup, :setup
   end
 end
