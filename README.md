@@ -1,4 +1,9 @@
-# UtopiaData
+# UtopiaData [![Build Status](https://travis-ci.org/dukex/utopia.png?branch=develop)](https://travis-ci.org/dukex/utopia)
+
+## Ruby Version Support
+  * 2.0.0
+  * jruby-19mode
+  * rbx-19mode
 
 TODO: Write a gem description
 
