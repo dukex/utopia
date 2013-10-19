@@ -1,4 +1,4 @@
-# UtopiaData [![Build Status](https://travis-ci.org/dukex/utopia.png?branch=develop)](https://travis-ci.org/dukex/utopia)
+# UtopiaData [![Build Status](https://travis-ci.org/dukex/utopia.png?branch=develop)](https://travis-ci.org/dukex/utopia)[![Code Climate](https://codeclimate.com/github/dukex/utopia.png)](https://codeclimate.com/github/dukex/utopia)
 
 ## Ruby Version Support
   * 2.0.0
