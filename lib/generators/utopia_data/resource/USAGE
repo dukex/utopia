@@ -1,8 +1,0 @@
-Description:
-    Utopia:Resource
-
-Example:
-    rails generate utopia:resource TheResource
-
-    This will create:
-        app/utopia_data/the_resource
