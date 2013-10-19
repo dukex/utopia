@@ -16,7 +16,24 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-# :nodoc
 module UtopiaData
-  VERSION = '0.0.1'
+  # @nodoc
+  class Route
+    # Grape Routes Generator
+    # @params resource_name [Symbol] resource name
+    # @return [String] the route to resource
+    def self.build(resource_name)
+      <<-RESOURCE_ROUTE
+        resource :#{name} do
+          get do
+            []
+          end
+
+          get ':id' do
+            {}
+          end
+        end
+      RESOURCE_ROUTE
+    end
+  end
 end

@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require 'spec_helper'
 
 describe UtopiaData do
@@ -12,14 +14,14 @@ describe UtopiaData do
     UtopiaData::Api
   end
 
-  it "index resource path" do
-    get "/people"
+  it 'index resource path' do
+    get '/people'
     expect(last_response.status).to eq(200)
     expect(JSON.parse(last_response.body)).to eq([])
   end
 
-  it "show resource path"  do
-    get "/people/1"
+  it 'show resource path'  do
+    get '/people/1'
     expect(last_response.status).to eq(200)
     expect(JSON.parse(last_response.body)).to eq({})
   end

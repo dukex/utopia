@@ -1,8 +1,10 @@
+# encoding: utf-8
+
 require 'utopia_data'
 require 'rack/test'
 require 'json'
 
-Dir["spec/support/**/*.rb"].each {|f| require f}
+Dir['spec/support/**/*.rb'].each { |f| require f }
 
 RSpec.configure do |config|
   config.treat_symbols_as_metadata_keys_with_true_values = true

@@ -23,6 +23,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "pry"
   spec.add_development_dependency "rspec"
   spec.add_development_dependency "rack-test"
-  spec.add_dependency "grape", "0.6.0"
+  spec.add_dependency "grape", "~> 0.6.0"
   spec.add_dependency "thor"
 end

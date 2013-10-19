@@ -1,8 +1,12 @@
-require "utopia_data/version"
-require "utopia_data/application"
-require "utopia_data/resource"
+# encoding: utf-8
+
+require 'utopia_data/version'
+require 'utopia_data/application'
+require 'utopia_data/resource'
 require 'forwardable'
 
+# UtopiaData
+# @todo: documentation
 module UtopiaData
   autoload :Api, 'utopia_data/api'
 
