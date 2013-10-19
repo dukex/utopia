@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+require 'bundler/setup'
+utopia_data_path = File.join(File.expand_path("../lib", __FILE__))
+$:.unshift(utopia_data_path)
+
+require 'utopia_data/cli'
+
+UtopiaData::CLI.start(ARGV)
