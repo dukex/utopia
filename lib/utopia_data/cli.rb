@@ -22,7 +22,7 @@ module UtopiaData
   # UtopiaData Command Line Interface
   class CLI < Thor
     include Thor::Actions
-    attr_reader :name
+    attr_reader :name, :resource_name
 
     def self.source_root
       File.expand_path('../../..', __FILE__)
@@ -32,8 +32,18 @@ module UtopiaData
     def new(name)
       @name = name
       directory('templates/app', name, verbose: true)
-      template('templates/app.erb', "#{name}/#{name}_app.rb")
       template('templates/config.ru.erb', "#{name}/config.ru")
+      template('templates/app.erb', "#{name}/#{name}_app.rb")
+      template('templates/Gemfile.erb', "#{name}/Gemfile")
+      inside(name) do
+        run "bundle install"
+      end
+    end
+
+    desc 'resource people', 'Create a new resource'
+    def resource(resource_name)
+      @resource_name = resource_name
+      template('templates/resource.erb', "resources/#{resource_name}.rb")
     end
   end
 end

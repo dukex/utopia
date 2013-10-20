@@ -35,6 +35,9 @@ module UtopiaData
       @application ||= ::UtopiaData::Application.new
     end
 
+    def setup
+    end
+
     # register a new resource
     def_delegator :application, :register, :register
   #  def_delegator :application, :setup, :setup

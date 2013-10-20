@@ -3,3 +3,6 @@ require 'utopia_data'
 
 UtopiaData.setup do
 end
+
+
+Dir['resources/**/*.rb'].each{ |resource| require resource }

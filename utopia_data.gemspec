@@ -8,9 +8,11 @@ Gem::Specification.new do |spec|
   spec.version       = UtopiaData::VERSION
   spec.authors       = ["Duke"]
   spec.email         = ["duke@riseup.net"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
-  spec.homepage      = ""
+  spec.description   = %q{UtopiaData is a (easy)way to expose/open database, with few commands UtopiaData
+creates a RESTful API (with hypermedia) and read-only access to some
+resources on database}
+  spec.summary       = %q{UtopiaData is a (easy)way to expose/open database}
+  spec.homepage      = "http://github.com/dukex/utopia"
   spec.license       = "GNU Affero General"
 
   spec.files         = `git ls-files`.split($/)
