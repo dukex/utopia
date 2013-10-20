@@ -43,9 +43,5 @@ module UtopiaData
       #def parse_registration_block(the_resource, &block)
       #  resource_dsl.run_registration_block(the_resource, &block)
       #end
-
-      def route
-        Api.class_eval Route.build(name)
-      end
   end
 end

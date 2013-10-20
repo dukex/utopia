@@ -18,23 +18,29 @@
 
 module UtopiaData
   # @nodoc
-  class Route
-    # Grape Routes Generator
-    # @params resource_name [Symbol] resource name
-    # @return [String] the route to resource
-    def self.build(resource_name)
-      route = <<-RESOURCE_ROUTE
-        resource :#{resource_name} do
-          get do
-            []
-          end
+  module ResourceHelper
+    module Route
+      def create_routes
+        Api.class_eval build_routes
+      end
 
-          get ':id' do
-            {}
+      # Grape Routes Generator
+      # @params resource_name [Symbol] resource name
+      # @return [String] the route to resource
+      def build_routes
+        route = <<-RESOURCE_ROUTE
+          resource :#{name} do
+            get do
+              []
+            end
+
+            get ':id' do
+              {}
+            end
           end
-        end
-      RESOURCE_ROUTE
-      route
+        RESOURCE_ROUTE
+        route
+      end
     end
   end
 end

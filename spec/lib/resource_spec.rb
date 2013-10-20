@@ -5,6 +5,24 @@ require 'spec_helper'
 describe UtopiaData::Resource do
   subject { UtopiaData::Resource.new :people }
 
+  describe '#build_route' do
+    it 'returns grape route' do
+      expected_route = <<-ROUTE
+      resource :people do
+        get do
+          []
+        end
+
+        get ':id' do
+          {}
+        end
+      end
+      ROUTE
+
+      expect(subject.build_routes.gsub!(/\s+/, ' ')).to eq(expected_route.gsub!(/\s+/, ' '))
+    end
+  end
+
   describe "#register" do
     include Rack::Test::Methods
 

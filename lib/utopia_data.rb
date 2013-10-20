@@ -25,7 +25,6 @@ module UtopiaData
   autoload :Api,          'utopia_data/api'
   autoload :Application,  'utopia_data/application'
   autoload :Resource,     'utopia_data/resource'
-  autoload :Route,        'utopia_data/route'
 
   class << self
     extend Forwardable
