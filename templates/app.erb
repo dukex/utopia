@@ -5,4 +5,4 @@ UtopiaData.setup do
 end
 
 
-Dir['resources/**/*.rb'].each{ |resource| require resource }
+Dir['resources/**/*.rb'].each{ |resource| require File.expand_path(resource) }
