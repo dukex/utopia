@@ -22,22 +22,26 @@ module UtopiaData
     # A hash of all the registered resources
     attr_accessor  :resources
 
-    # create a default value to resources and
     def initialize
-      self.resources ||= {}
+      @resources ||= {}
     end
 
-    def setup(&block)
-    end
+    #def setup(&block)
+    #end
 
+    # Register a new resource
+    #
+    # @params resource_name [Symbol] the resource name
+    # @params options [Hash] custom resource options
     def register(resource_name, options = {}, &block)
-      find_or_create_resource(resource_name, options, &block)
+      @resources[resource_name] = Resource.new(resource_name, options, &block)
+    #  find_or_create_resource(resource_name, options, &block)
     end
 
-    def find_or_create_resource(name, options = {}, &block)
-      return @resources[name] if resources[name]
-      resource = Resource.new(name, options, &block)
-      @resources[name] = resource
-    end
+    #def find_or_create_resource(name, options = {}, &block)
+    #  return @resources[name] if resources[name]
+    #  resource = Resource.new(name, options, &block)
+    #  @resources[name] = resource
+    #end
   end
 end

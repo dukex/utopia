@@ -6,7 +6,7 @@ describe UtopiaData::Application do
   describe '#register' do
     it 'create a resource' do
       subject.register :x
-      expect(subject.resources[:x]).to is_a(Resource)
+      expect(subject.resources[:x]).to be_a(UtopiaData::Resource)
     end
   end
 end

@@ -23,8 +23,8 @@ module UtopiaData
     # @params resource_name [Symbol] resource name
     # @return [String] the route to resource
     def self.build(resource_name)
-      <<-RESOURCE_ROUTE
-        resource :#{name} do
+      route = <<-RESOURCE_ROUTE
+        resource :#{resource_name} do
           get do
             []
           end
@@ -34,6 +34,7 @@ module UtopiaData
           end
         end
       RESOURCE_ROUTE
+      route
     end
   end
 end

@@ -18,7 +18,8 @@
 require 'grape'
 
 module UtopiaData
-  # Grape wrapper
+  # Api is a Grape(https://github.com/intridea/grape) wrapper, always request
+  # sent to rack will run on Api
   class Api < Grape::API
     format :json
   end
