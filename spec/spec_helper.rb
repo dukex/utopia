@@ -4,7 +4,9 @@ require 'utopia_data'
 require 'rack/test'
 require 'json'
 
-Dir['spec/support/**/*.rb'].each { |f| require f }
+GC::Profiler.enable
+
+Dir['spec/support/**/*.rb'].each { |f| require File.expand_path(f) }
 
 RSpec.configure do |config|
   config.treat_symbols_as_metadata_keys_with_true_values = true
@@ -15,3 +17,4 @@ RSpec.configure do |config|
     c.syntax = :expect
   end
 end
+

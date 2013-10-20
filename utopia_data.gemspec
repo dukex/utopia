@@ -25,8 +25,9 @@ resources on database}
   spec.add_development_dependency "pry"
   spec.add_development_dependency "rspec"
   spec.add_development_dependency "rack-test"
+  spec.add_development_dependency "sqlite3"
+  spec.add_development_dependency "activerecord", "~> 4.0.0"
   spec.add_dependency "grape", "~> 0.6.0"
   spec.add_dependency "thor"
   spec.add_dependency "roar"
-  spec.add_dependency "activerecord", "~> 4.0.0"
 end

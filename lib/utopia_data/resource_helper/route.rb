@@ -31,11 +31,11 @@ module UtopiaData
         route = <<-RESOURCE_ROUTE
           resource :#{name} do
             get do
-              []
+              #{model_name}.all
             end
 
             get ':id' do
-              {}
+              #{model_name}.find(params[:id])
             end
           end
         RESOURCE_ROUTE

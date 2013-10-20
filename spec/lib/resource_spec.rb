@@ -10,11 +10,11 @@ describe UtopiaData::Resource do
       expected_route = <<-ROUTE
       resource :people do
         get do
-          []
+          Person.all
         end
 
         get ':id' do
-          {}
+          Person.find(params[:id])
         end
       end
       ROUTE
@@ -41,19 +41,21 @@ describe UtopiaData::Resource do
     end
 
     it 'create show resource path'  do
-      get '/people/1'
+      person = Person.create! name: 'Duke'
+      get "/people/#{person.id}"
       expect(last_response.status).to eq(200)
-      expect(JSON.parse(last_response.body)).to eq({})
+      expect(JSON.parse(last_response.body)).to eq({"id"=>person.id, "name"=>"Duke"})
     end
   end
 
   describe "Model" do
-    context "without custom config" do
-      it "should set table name to lei" do
-        expect(subject.model.table_name).to eq('people')
-      end
+    context "Database" do
+      context "without custom config" do
+        it "should set table name to lei" do
+          expect(subject.model.table_name).to eq('people')
+        end
 
-      it "should be model columns" do
+        it "should be model columns" do
         # subject.columns.should == ["id", "created_at", "updated_at", "number"]
       end
 
@@ -63,7 +65,7 @@ describe UtopiaData::Resource do
       end
     end
 
-    describe "with custom config" do
+    context "with custom config" do
 
       it "should set columns only with name" do
         #custom_resource = subject do
@@ -84,4 +86,5 @@ describe UtopiaData::Resource do
       end
     end
   end
+end
 end
