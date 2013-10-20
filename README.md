@@ -23,6 +23,7 @@ resources on database
 
 [examples/](https://github.com/dukex/utopia/tree/master/examples) Examples apps
 
+### Running Server
 UtopiaData is a [rack](http://rack.github.io/) project using the [grape](https://github.com/intridea/grape), do you can up the project with any rack server like [puma](http://puma.io/), [unicorn](http://unicorn.bogomips.org/) or [passenger](https://www.phusionpassenger.com/).
 
 To up your project on development you can only run:
