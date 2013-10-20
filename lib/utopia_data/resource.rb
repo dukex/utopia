@@ -16,9 +16,15 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+require 'utopia_data/resource_helper/route'
+require 'utopia_data/resource_helper/model'
+
 module UtopiaData
   # Create and build resource
   class Resource
+    include UtopiaData::ResourceHelper::Route
+    include UtopiaData::ResourceHelper::Model
+
     attr_reader :name
 
     # @params resource_name [Symbol] the resource name
@@ -31,7 +37,8 @@ module UtopiaData
 
     # Create route to resource
     def create!
-      route
+      create_routes
+      create_model
     end
 
     private
